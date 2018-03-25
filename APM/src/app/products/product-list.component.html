@@ -1,5 +1,5 @@
-<div class="card border-primary">
-  <div class="card-header bg-primary text-white">
+<div class="card">
+  <div class="card-header text-white">
     {{ pageTitle }}
   </div>
   <div class="card-body">
@@ -18,9 +18,9 @@
       <table class="table"
         *ngIf="products && products.length">
         <thead>
-          <tr class="border-top-0">
+          <tr>
             <th>
-              <button class="btn btn-primary" (click)='toggleImage()'>
+              <button class="btn text-white image-btn" (click)='toggleImage()'>
                 {{ showImage ? 'Hide' : 'Show' }} Image
               </button>
             </th>
@@ -41,7 +41,7 @@
                 [style.margin.px]='imageMargin'>
             </td>
             <td>{{ product.productName }}</td>
-            <td>{{ product.productCode | lowercase }}</td>
+            <td>{{ product.productCode | lowercase | convertToSpaces: '-' }}</td>
             <td>{{ product.releaseDate }}</td>
             <td>{{ product.price | currency:'USD':'true':'1.2-2' }}</td>
             <td>{{ product.starRating }}</td>
