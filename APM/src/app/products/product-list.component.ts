@@ -54,11 +54,15 @@ export class ProductListComponent implements OnInit {
     console.log('In Onit');
   }
 
-  performFilter(filterBy: string): IProduct[] {
+  private performFilter(filterBy: string): IProduct[] {
     filterBy = filterBy.toLocaleLowerCase();
     return this.products.filter((product: IProduct) =>
       product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1
     );
+  }
+
+  public onRatingClicked(message: string): void {
+    this.pageTitle = 'Product List: ' + message;
   }
 
   public toggleImage(): void {
