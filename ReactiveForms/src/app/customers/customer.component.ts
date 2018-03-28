@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray } from '@angular/forms';
 import { Customer } from './customer';
 import { ratingRange, emailMatcher } from './custom-validation';
 
@@ -20,6 +20,10 @@ export class CustomerComponent implements OnInit {
     pattern: 'Please enter a valid email address.'
   };
 
+  get addresses(): FormArray {
+    return <FormArray> this.customerForm.get('addresses');
+  }
+
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -33,7 +37,8 @@ export class CustomerComponent implements OnInit {
       phone: '',
       notification: 'email',
       rating: ['', ratingRange(1, 5)],
-      sendCatalog: true
+      sendCatalog: true,
+      addresses: this.formBuilder.array([ this.buildAddress() ])
     });
 
     this.customerForm.get('notification').valueChanges
@@ -47,14 +52,6 @@ export class CustomerComponent implements OnInit {
   public save() {
     console.log(this.customerForm);
     console.log('Saved: ' + JSON.stringify(this.customerForm.value));
-  }
-
-  setMessage(c: AbstractControl): void {
-    this.emailMessage = '';
-    if ((c.touched || c.dirty) && c.errors) {
-      this.emailMessage = Object.keys(c.errors).map(key =>
-        this.validationMessages[key]).join(' ');
-    }
   }
 
   public setNotification(notifyVia: string): void {
@@ -73,5 +70,28 @@ export class CustomerComponent implements OnInit {
       lastName: 'zyang0508@163.com',
       sendCatalog: true
     });
+  }
+
+  buildAddress(): FormGroup {
+    return this.formBuilder.group({
+      addressType: 'home',
+      street1: '',
+      street2: '',
+      city: '',
+      state: '',
+      zip: ''
+    });
+  }
+
+  addAddress(): void {
+    this.addresses.push(this.buildAddress());
+  }
+
+  setMessage(c: AbstractControl): void {
+    this.emailMessage = '';
+    if ((c.touched || c.dirty) && c.errors) {
+      this.emailMessage = Object.keys(c.errors).map(key =>
+        this.validationMessages[key]).join(' ');
+    }
   }
 }
