@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Customer } from './customer';
+import { ratingRange } from './range-validation';
 
 @Component({
   selector: 'app-signup',
@@ -20,6 +21,7 @@ export class CustomerComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+')]],
       phone: '',
       notification: 'email',
+      rating: ['', ratingRange],
       sendCatalog: true
     });
   }
