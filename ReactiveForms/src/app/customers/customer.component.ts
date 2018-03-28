@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Customer } from './customer';
-import { ratingRange } from './range-validation';
+import { ratingRange, emailMatcher } from './custom-validation';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +18,10 @@ export class CustomerComponent implements OnInit {
     this.customerForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(3)]],
       lastName: ['', [Validators.required, Validators.maxLength(50)]],
-      email: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+')]],
+      emailGroup: this.formBuilder.group({
+        email: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+')]],
+        confirmEmail: ['', [Validators.required]]
+      }, { validator: emailMatcher }),
       phone: '',
       notification: 'email',
       rating: ['', ratingRange(1, 5)],
