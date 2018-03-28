@@ -21,7 +21,7 @@ export class CustomerComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+')]],
       phone: '',
       notification: 'email',
-      rating: ['', ratingRange],
+      rating: ['', ratingRange(1, 5)],
       sendCatalog: true
     });
   }
