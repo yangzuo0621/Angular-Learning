@@ -1,0 +1,11 @@
+<div class="mb-4">
+  <nav class="navbar bg-light justify-content-start">
+    <div class="navbar-brand">{{ pageTitle }}</div>
+    <a class="nav-item nav-link" [routerLink]="['/welcome']">Home</a>
+    <a class="nav-item nav-link" [routerLink]="['/products']">Product List</a>
+  </nav>
+</div>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
