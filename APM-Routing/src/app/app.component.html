@@ -1,0 +1,25 @@
+<div class="mb-4">
+  <nav class="navbar bg-light justify-content-start">
+    <div class="navbar-brand">{{ pageTitle }}</div>
+    <a class="nav-item nav-link">Home</a>
+    <a class="nav-item nav-link">Product List</a>
+    <a class="nav-item nav-link">Add Product</a>
+    
+    <li *ngIf="authService.isLoggedIn()">
+      <a>Welcome {{ authService.currentUser.userName }}</a>
+    </li>
+    <li>
+      <a>Show Messages</a>
+    </li>
+    <li *ngIf="!authService.isLoggedIn()">
+      <a>Log In</a>
+    </li>
+    <li *ngIf="authService.isLoggedIn()">
+      <a (click)="logOut()">Log Out</a>
+    </li>
+  </nav>
+</div>
+
+<div class="container">
+  <pm-home></pm-home>
+</div>
