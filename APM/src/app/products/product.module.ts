@@ -6,6 +6,7 @@ import { ProductDetailComponent } from './product-detail.component';
 import { ProductGuard } from './product.guard';
 import { ProductService } from './product.service';
 import { SharedModule } from '../shared/shared.module';
+import { ProductEditComponent } from './product-edit.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   declarations: [
     ProductListComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductEditComponent
   ],
   providers: [
     ProductService,

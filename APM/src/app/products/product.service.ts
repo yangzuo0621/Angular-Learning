@@ -25,10 +25,10 @@ export class ProductService {
 
   public getProductById(id: number): Observable<IProduct> {
     return this.getProducts()
-      .map((products: IProduct[]) => products.find(p => p.productId === id));
+      .map((products: IProduct[]) => products.find(p => p.id === id));
     // return this._http.get(this._productUrl)
     //   .pipe(
-    //     map((products: IProduct[]) => products.find(item => item.productId === id))
+    //     map((products: IProduct[]) => products.find(item => item.id === id))
     //   )
     //   .do(data => console.log(`Product ${id}: ` + JSON.stringify(data)))
     //   .catch(this.handleError);
